@@ -51,7 +51,7 @@ public class SystemNotificationFragment extends Fragment implements Notification
 		activity = getActivity();
 		// ensure out temperature info is updated
 		byte[] data = {};
-		Master.writeData(activity, Master.GETTEMP, data);
+//		Master.writeData(activity, Master.GETTEMP, data);
 		// init the text views
 		outsideTemp = (TextView) getActivity().findViewById(R.id.outside_temperature);
 		insideTemp = (TextView) getActivity().findViewById(R.id.inside_temperature);
@@ -97,7 +97,7 @@ public class SystemNotificationFragment extends Fragment implements Notification
 	public void restoreFragment(Bundle bundle) {
 		// ensure out temperature info is updated
 		byte[] data = {};
-		Master.writeData(activity, Master.GETTEMP, data);
+//		Master.writeData(activity, Master.GETTEMP, data);
 		// use the passed info to show the temps.  anything updated will overwrite via the broadcast receiver
 		insideTemp.setText(bundle.getInt("inside") + "\u2103");
 		outsideTemp.setText(bundle.getInt("outside") + "\u2103");

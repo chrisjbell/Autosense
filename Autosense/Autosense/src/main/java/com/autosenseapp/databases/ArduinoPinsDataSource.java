@@ -290,7 +290,7 @@ public class ArduinoPinsDataSource {
 			database.setTransactionSuccessful();
 			// write it out to the arduino if successful
 			byte data[] = {(byte) arduinoPin.getPinNumber(), (byte) arduinoPin.getMode()};
-			Master.writeData(context, Master.PINMODE, data);
+			Master.writeData(context, Master.SETPINMODE, data);
 		} finally {
 			database.endTransaction();
 		}

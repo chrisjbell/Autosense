@@ -40,7 +40,7 @@ public class RadioFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 				byte data[] = {1};
-				Master.writeData(activity, Master.RADIOSEEKDOWN, data);
+//				Master.writeData(activity, Master.RADIOSEEKDOWN, data);
 				Log.d(TAG, "seek down");
 			}
 		});
@@ -49,7 +49,7 @@ public class RadioFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 				byte data[] = {1};
-				Master.writeData(activity, Master.RADIOSEEKUP, data);
+//				Master.writeData(activity, Master.RADIOSEEKUP, data);
 				Log.d(TAG, "seek up");
 			}
 		});
@@ -58,7 +58,7 @@ public class RadioFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 				byte data[] = {Helpers.highByte(993), Helpers.lowByte(993)};
-				Master.writeData(activity, Master.RADIOSETCHANNEL, data);
+//				Master.writeData(activity, Master.RADIOSETCHANNEL, data);
 			}
 		});
 
@@ -66,7 +66,7 @@ public class RadioFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 				byte data[] = {Helpers.highByte(1011), Helpers.lowByte(1011)};
-				Master.writeData(activity, Master.RADIOSETCHANNEL, data);
+//				Master.writeData(activity, Master.RADIOSETCHANNEL, data);
 			}
 		});
 	}

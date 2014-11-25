@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-def versionNumber = 51
+def versionNumber = 52
 
 android {
 	signingConfigs {
@@ -69,7 +69,7 @@ dependencies {
 	compile 'com.jakewharton:butterknife:5.1.2'
 	compile 'com.squareup.dagger:dagger:1.2.2'
 	provided 'com.squareup.dagger:dagger-compiler:1.2.2'
-	compile 'com.splunk.mint:mint:4.0.5'
+	compile 'com.splunk.mint:mint:4.0.6'
 }
 
 def outputFile = file("src/main/assets/apk_version.txt")

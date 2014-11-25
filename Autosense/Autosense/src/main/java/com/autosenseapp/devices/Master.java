@@ -24,25 +24,13 @@ public class Master extends Device {
 	public static final String LIGHTVALUE = "com.autosenseapp.lydia.LIGHTVALUE";
 	public static final String OUTSIDETEMPERATURE = "com.autosenseapp.lydia.OUTSIDETEMPERATURE";
 
-	public static final int RADIOSEEKDOWN = 116;
-	public static final int RADIOSEEKUP = 117;
-	public static final int RADIOVOLDOWN = 118;
-	public static final int RADIOVOLUP = 119;
-	public static final int RADIOSETCHANNEL = 120;
-
-	public static final int INSIDETEMP = 160;
-	public static final int LIGHTLEVEL = 176;
-	public static final int OUTSIDETEMP = 161;
-	public static final int GETTEMP = 162;
-
-	public static final int SEATHEAT = 121;
-
 	public static final int HIGH = 140;
 	public static final int LOW = 141;
 	public static final int TOGGLE = 142;
 	public static final int TIMER = 143;
 
-	public static final int PINMODE = 144;
+	public static final int GETPINVALUE = 146;
+	public static final int SETPINMODE = 144;
 	public static final int PINSTATE = 145;
 
 	private Context context;
@@ -70,22 +58,28 @@ public class Master extends Device {
 	public void parseData(int sender, int length, int[] data, int checksum) {
 		int command = data[0];
 		switch (command) {
-			case INSIDETEMP: {
-				int insideTemp = Helpers.word(data[1], data[2]);
-				context.sendBroadcast(new Intent(INSIDETEMPERATURE).putExtra(INSIDETEMPERATURE, insideTemp));
-//				Log.d(TAG, "got inside temp: " + insideTemp);
-				break;
-			}
-			case LIGHTLEVEL: {
-				int lightLevel = Helpers.word(data[1], data[2]);
-//				Log.d(TAG, "got light level: " + lightLevel);
-				context.sendBroadcast(new Intent(LIGHTVALUE).putExtra(LIGHTVALUE, String.valueOf(lightLevel)));
-				break;
-			}
-			case OUTSIDETEMP: {
-				int outsideTemp = Helpers.word(data[1], data[2]);
-				context.sendBroadcast(new Intent(OUTSIDETEMPERATURE).putExtra(OUTSIDETEMPERATURE, outsideTemp));
-//				Log.d(TAG, "got outside temp: " + outsideTemp);
+//			case INSIDETEMP: {
+//				int insideTemp = Helpers.word(data[1], data[2]);
+//				context.sendBroadcast(new Intent(INSIDETEMPERATURE).putExtra(INSIDETEMPERATURE, insideTemp));
+////				Log.d(TAG, "got inside temp: " + insideTemp);
+//				break;
+//			}
+//			case LIGHTLEVEL: {
+//				int lightLevel = Helpers.word(data[1], data[2]);
+////				Log.d(TAG, "got light level: " + lightLevel);
+//				context.sendBroadcast(new Intent(LIGHTVALUE).putExtra(LIGHTVALUE, String.valueOf(lightLevel)));
+//				break;
+//			}
+//			case OUTSIDETEMP: {
+//				int outsideTemp = Helpers.word(data[1], data[2]);
+//				context.sendBroadcast(new Intent(OUTSIDETEMPERATURE).putExtra(OUTSIDETEMPERATURE, outsideTemp));
+////				Log.d(TAG, "got outside temp: " + outsideTemp);
+//				break;
+//			}
+			case GETPINVALUE: {
+				int pin = data[1];
+				int value = Helpers.word(data[2], data[3]);
+				context.sendBroadcast(new Intent(Arduino.PIN_VALUE).putExtra("pin", pin).putExtra("value", value));
 				break;
 			}
 			case PINSTATE: {

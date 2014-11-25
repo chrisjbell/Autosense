@@ -12,8 +12,7 @@
 						 android:layout_height="wrap_content"
 						 android:src="@drawable/device_access_bluetooth"
 						 android:contentDescription="@string/bluetooth"
-						 android:background="@null"
-						 android:onClick="toggleBluetooth"/>
+						 android:background="@null" />
 			<TextView style="@style/XSmallText" android:text="@string/bluetooth"/>
 		</LinearLayout>
 

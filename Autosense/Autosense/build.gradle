@@ -25,7 +25,7 @@ android {
 			buildConfigField "boolean", "DONATE", "true"
 		}
 		release {
-			runProguard false
+			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
 			buildConfigField "boolean", "INCLUDE_BUGSENSE", "true"
 			buildConfigField "boolean", "INCLUDE_UPDATER", "false"
@@ -61,8 +61,8 @@ dependencies {
 	compile project(':ambilWarna')
 	compile project(':usbSerialForAndroid')
 	compile project(':timePickerWithSeconds')
-	compile 'com.android.support:support-v4:20.0.0'
-	compile 'com.google.android.gms:play-services:5.0.89'
+	compile 'com.android.support:support-v4:21.0.0'
+	compile 'com.google.android.gms:play-services:6.1.71'
 	compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
 	compile files('libs/lastfm-java-0.1.2.jar')
 	compile files('libs/updatechecker.jar')

@@ -17,6 +17,7 @@ import com.autosenseapp.adapters.PinsAdapter;
 import com.autosenseapp.adapters.TriggerAdapter;
 import com.autosenseapp.controllers.PinTriggerController;
 import com.autosenseapp.databases.ArduinoPin;
+import com.autosenseapp.devices.Arduino;
 import com.autosenseapp.devices.actions.Action;
 import com.autosenseapp.devices.outputTriggers.Trigger;
 import com.ikovac.timepickerwithseconds.view.MyTimePickerDialog;
@@ -90,7 +91,7 @@ public class ArduinoPinEditor extends BaseActivity implements
 			// get the listview and pass the map adapter
 			pinList.setAdapter(new PinsAdapter(this, arduinoPins));
 
-			pinModes.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pinTriggerController.getPinModes()));
+			pinModes.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Arduino.getPinModes()));
 
 			// Must be last
 			// select the first item
@@ -190,7 +191,7 @@ public class ArduinoPinEditor extends BaseActivity implements
 
 	private void updateTriggerList(ArduinoPin selectedArduinoPin) {
 		switch (selectedArduinoPin.getMode()) {
-			case PinTriggerController.OUTPUT: {
+			case Arduino.OUTPUT: {
 				actionTitle.setVisibility(View.VISIBLE);
 				pinSettingsTitle.setText(getString(R.string.trigger));
 				List<Trigger> selectedTriggers = pinTriggerController.getTriggers(selectedArduinoPin);
@@ -204,7 +205,7 @@ public class ArduinoPinEditor extends BaseActivity implements
 				}
 				break;
 			}
-			case PinTriggerController.INPUT: {
+			case Arduino.INPUT: {
 				actionTitle.setVisibility(View.GONE);
 				updateActions(null);
 				break;
@@ -223,7 +224,7 @@ public class ArduinoPinEditor extends BaseActivity implements
 			actionTitle.setText(getString(R.string.action));
 		}
 		actionGroup.removeAllViews();
-		if (selectedArduinoPin.getMode() == PinTriggerController.OUTPUT) {
+		if (selectedArduinoPin.getMode() == Arduino.OUTPUT) {
 			// populate available actions
 			// Loop over all the radio buttons
 			for (Action action : allOutputActions) {

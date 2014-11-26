@@ -26,12 +26,8 @@ public class PinTriggerController {
 	private static final String TAG = PinTriggerController.class.getSimpleName();
 
 	private Context context;
-	public static final int HIGH_IMPEDANCE = 0;
-	public static final int INPUT= 1;
-	public static final int OUTPUT = 2;
 
 	private final ArduinoPinsDataSource arduinoPinsDataSource;
-	private List<String> pinModes;
 
 	@Inject
 	public PinTriggerController(Context context) {
@@ -39,11 +35,6 @@ public class PinTriggerController {
 
 		arduinoPinsDataSource = new ArduinoPinsDataSource(context);
 		arduinoPinsDataSource.open();
-
-		pinModes = new ArrayList<String>();
-		pinModes.add(HIGH_IMPEDANCE, this.context.getString(R.string.high_impedance));
-		pinModes.add(INPUT, this.context.getString(R.string.input));
-		pinModes.add(OUTPUT, this.context.getString(R.string.output));
 
 		setupTriggers();
 	}
@@ -94,10 +85,6 @@ public class PinTriggerController {
 
 	public List<ArduinoPin> getAllTriggersByClassName(String name) {
 		return arduinoPinsDataSource.getAllTriggersByClassName(name);
-	}
-
-	public List<String> getPinModes() {
-		return Collections.unmodifiableList(pinModes);
 	}
 
 	public List<Action> getOutputActions() {

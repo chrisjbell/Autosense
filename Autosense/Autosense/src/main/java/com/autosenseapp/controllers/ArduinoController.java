@@ -64,7 +64,7 @@ public class ArduinoController {
 		thread = new Thread(null, arduinoRunnable, TAG);
 		thread.start();
 
-		arduino = new Arduino();
+		arduino = new Arduino(context);
 		populateArduinoWithDevices();
 	}
 

@@ -13,7 +13,7 @@ abstract public class Device {
 	// Globally used commands
 	public static final int GETVALUE = 200;
 
-	private static final String TAG = "lydia device";
+	private static final String TAG = Device.class.getSimpleName();
 	public static final int id = 16; // Our "Android" id for the i2c bus
 
 	private Context context;

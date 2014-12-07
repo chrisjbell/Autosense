@@ -9,7 +9,7 @@ import com.autosenseapp.R;
 /**
  * Created by eric on 2013-08-24.
  */
-public class WeatherSettingsFragment extends PreferenceFragment {
+public class WeatherSettingsFragment extends BasePreferenceFragment {
 	public static final String TAG = "lydia system Settings Preference";
 	public SharedPreferences sharedPreferences;
 

@@ -17,6 +17,7 @@ import com.autosenseapp.adapters.SongAdapter;
 import com.autosenseapp.buttons.BaseButton;
 import com.autosenseapp.buttons.appButtons.AppLaunchButton;
 import com.autosenseapp.buttons.appButtons.MusicButton;
+import com.autosenseapp.buttons.settingsButtons.WeatherSettingsButton;
 import com.autosenseapp.buttons.widgetButtons.ArduinoButton;
 import com.autosenseapp.controllers.BackgroundController;
 import com.autosenseapp.controllers.MediaController;
@@ -27,6 +28,7 @@ import com.autosenseapp.devices.usbInterfaces.ArduinoAccessory;
 import com.autosenseapp.devices.usbInterfaces.ArduinoDevice;
 import com.autosenseapp.dialogs.ActionToggleExtraDialog;
 import com.autosenseapp.fragments.HeaderFragment;
+import com.autosenseapp.fragments.LauncherFragment;
 import com.autosenseapp.fragments.MusicFragment;
 import com.autosenseapp.fragments.MusicFragmentStates.AlbumSongState;
 import com.autosenseapp.fragments.MusicFragmentStates.AlbumState;
@@ -36,9 +38,15 @@ import com.autosenseapp.fragments.MusicFragmentStates.NowPlayingState;
 import com.autosenseapp.fragments.MusicFragmentStates.PlaylistSongState;
 import com.autosenseapp.fragments.MusicFragmentStates.PlaylistState;
 import com.autosenseapp.fragments.NotificationFragments.MusicNotificationFragment;
+import com.autosenseapp.fragments.Settings.AlarmSettingsFragment;
 import com.autosenseapp.fragments.Settings.ArduinoSettingsFragment;
 import com.autosenseapp.fragments.Settings.BackgroundSettingsFragment;
+import com.autosenseapp.fragments.Settings.GaugesSettingsFragment;
 import com.autosenseapp.fragments.Settings.MasterIoFragment;
+import com.autosenseapp.fragments.Settings.MediaSettingsFragment;
+import com.autosenseapp.fragments.Settings.NavigationSettingsFragment;
+import com.autosenseapp.fragments.Settings.SystemSettingsFragment;
+import com.autosenseapp.fragments.Settings.WeatherSettingsFragment;
 import com.autosenseapp.services.AutosenseService;
 import com.autosenseapp.services.media_states.PausedState;
 import com.autosenseapp.services.media_states.PlayState;
@@ -54,6 +62,7 @@ import dagger.Provides;
 		injects = {
 				ActionToggle.class,
 				ActionToggleExtraDialog.class,
+				AlarmSettingsFragment.class,
 				AlbumSongState.class,
 				AlbumState.class,
 				AllSongsState.class,
@@ -72,13 +81,17 @@ import dagger.Provides;
 				BaseButton.class,
 				ButtonEditor.class,
 				Dashboard.class,
+				GaugesSettingsFragment.class,
 				HeaderFragment.class,
+				LauncherFragment.class,
 				MasterIoFragment.class,
+				MediaSettingsFragment.class,
 				MusicButton.class,
 				MediaAdapter.class,
 				MediaController.class,
 				MusicFragment.class,
 				MusicNotificationFragment.class,
+				NavigationSettingsFragment.class,
 				NowPlayingState.class,
 				PausedState.class,
 				PlayState.class,
@@ -86,6 +99,8 @@ import dagger.Provides;
 				PlaylistSongState.class,
 				SongAdapter.class,
 				StoppedState.class,
+				SystemSettingsFragment.class,
+				WeatherSettingsFragment.class,
 		},
 		library = true,
 		complete =  false

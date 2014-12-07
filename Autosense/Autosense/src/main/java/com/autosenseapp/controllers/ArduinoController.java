@@ -70,7 +70,9 @@ public class ArduinoController {
 
 	public void onDestroy() {
 		accessoryReadyBroadcastSent = false;
-		arduinoInterface.onDestroy();
+		try {
+			arduinoInterface.onDestroy();
+		} catch (NullPointerException e) {}
 		if (thread != null && thread.isAlive()) {
 			thread.interrupt();
 		}

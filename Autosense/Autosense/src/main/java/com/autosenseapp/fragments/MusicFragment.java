@@ -2,6 +2,7 @@ package com.autosenseapp.fragments;
 
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +18,9 @@ import com.autosenseapp.AutosenseApplication;
 import com.autosenseapp.R;
 import com.autosenseapp.callbacks.FragmentOnBackPressedCallback;
 import com.autosenseapp.fragments.MusicFragmentStates.*;
+
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.efriesen.lydia_common.media.*;
@@ -29,6 +33,8 @@ import ca.efriesen.lydia_common.media.*;
 public class MusicFragment extends ListFragment implements FragmentOnBackPressedCallback{
 
 	private static final String TAG = MusicFragment.class.getSimpleName();
+
+	@Inject SharedPreferences sharedPreferences;
 
 	private MusicFragmentState homeState;
 	private MusicFragmentState allSongState;
@@ -121,6 +127,10 @@ public class MusicFragment extends ListFragment implements FragmentOnBackPressed
 	@Override
 	public void onResume() {
 		super.onResume();
+		if (sharedPreferences.getBoolean("setListviewBg", false)) {
+			ListView listView = (ListView) getActivity().findViewById(android.R.id.list);
+			listView.setBackgroundResource(R.drawable.button_bg);
+		}
 	}
 
 	@Override

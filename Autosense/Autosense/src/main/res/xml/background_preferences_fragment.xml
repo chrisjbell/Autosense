@@ -7,6 +7,7 @@
 		<yuku.ambilwarna.widget.AmbilWarnaPreference android:key="topBgColor" android:title="Top Color" />
 		<yuku.ambilwarna.widget.AmbilWarnaPreference android:key="bottomBgColor" android:title="Bottom Color" />
 		<net.jayschwa.android.preference.SliderPreference android:key="backgroundBrightness" android:title="@string/brightness" android:defaultValue="1"/>
+        <com.autosenseapp.includes.CustomSwitchPreference android:key="setListviewBg" android:title="@string/set_listview_bg" android:summary="@string/set_listview_bg_summary" android:defaultValue="0"/>
 		<Preference android:key="removeImage" android:title="@string/reset_background_default" />
 	</PreferenceCategory>
 </PreferenceScreen>

@@ -11,7 +11,7 @@ import ca.efriesen.lydia_common.includes.Intents;
 /**
  * Created by eric on 2013-08-17.
  */
-public class AlarmSettingsFragment extends PreferenceFragment {
+public class AlarmSettingsFragment extends BasePreferenceFragment {
 	public static final String TAG = "lydia alarm Settings Preference";
 
 	public SharedPreferences sharedPreferences;

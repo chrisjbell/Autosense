@@ -13,7 +13,7 @@ import net.jayschwa.android.preference.SliderPreference;
 /**
  * Created by eric on 2014-05-19.
  */
-public class GaugesSettingsFragment extends PreferenceFragment {
+public class GaugesSettingsFragment extends BasePreferenceFragment {
 	public static final String TAG = "lydia gauges Settings Preference";
 
 	private Activity activity;

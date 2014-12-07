@@ -27,7 +27,7 @@ import java.util.Locale;
  * Date: 2012-10-24
  * Time: 1:09 PM
  */
-public class SystemSettingsFragment extends PreferenceFragment implements FragmentAnimationCallback, FragmentOnBackPressedCallback, Preference.OnPreferenceClickListener {
+public class SystemSettingsFragment extends BasePreferenceFragment implements FragmentAnimationCallback, FragmentOnBackPressedCallback, Preference.OnPreferenceClickListener {
 
 	private static final String TAG = SystemNotificationFragment.class.getSimpleName();
 

@@ -19,15 +19,18 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by eric on 2013-07-15.
  */
-public class LauncherFragment extends Fragment implements
+public class LauncherFragment extends BaseFragment implements
 		AdapterView.OnItemClickListener,
 		LoaderManager.LoaderCallbacks<List<AppInfo>> {
 	private static final String TAG = "lydia launcher fragment";
 
 	private ListView listView;
+	@Inject SharedPreferences sharedPreferences;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
@@ -41,6 +44,9 @@ public class LauncherFragment extends Fragment implements
 
 		// find the listview and attach the appinfo adapter to it
 		listView = (ListView) getActivity().findViewById(R.id.application_list);
+		if (sharedPreferences.getBoolean("setListviewBg", false)) {
+			listView.setBackgroundResource(R.drawable.button_bg);
+		}
 		// send any item clicks back to this class, looking for method onItemClick
 		listView.setOnItemClickListener(this);
 		getLoaderManager().initLoader(4, null, this);

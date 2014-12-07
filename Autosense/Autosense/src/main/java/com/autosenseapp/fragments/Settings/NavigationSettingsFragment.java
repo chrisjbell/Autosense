@@ -7,7 +7,7 @@ import com.autosenseapp.R;
 /**
  * Created by eric on 2013-08-01.
  */
-public class NavigationSettingsFragment extends PreferenceFragment {
+public class NavigationSettingsFragment extends BasePreferenceFragment {
 	public static final String TAG = "lydia navigation Settings Preference";
 
 	@Override

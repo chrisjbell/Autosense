@@ -15,7 +15,7 @@ import de.umass.lastfm.Caller;
 /**
  * Created by eric on 2013-08-01.
  */
-public class MediaSettingsFragment extends PreferenceFragment {
+public class MediaSettingsFragment extends BasePreferenceFragment {
 	public static final String TAG = "lydia media Settings Preference";
 	public SharedPreferences sharedPreferences;
 

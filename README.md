@@ -1,11 +1,13 @@
-lydia
-=====
+Autosense
+=========
 
 For updates and support please visit is at http://www.autosenseapp.com/
 
+To apk is available here: https://github.com/ericfri/Autosense/raw/master/Autosense/Autosense/Autosense-paid-gitHub.apk
+
 Android front end for in car use.  Currently it has only been tested on a Nexus 7 first gen.   
 
-"lydia" is the tablet portion.
+"Autosense" is the tablet portion.
 "lydia_phone" is the phone portion.  
 
 Between the two of them there is bluetooth support for sending/receiving SMS's, media and volume control, with more to come in the future.

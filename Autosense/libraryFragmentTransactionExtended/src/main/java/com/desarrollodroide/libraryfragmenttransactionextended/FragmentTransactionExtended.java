@@ -305,7 +305,7 @@ public class FragmentTransactionExtended implements FragmentManager.OnBackStackC
             default:
 				if (mUseBackStack)
 	                mFragmentTransaction.addToBackStack(null);
-                mFragmentTransaction.commit();
+                mFragmentTransaction.commitAllowingStateLoss();
                 break;
         }
     }

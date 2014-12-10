@@ -8,8 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import com.autosenseapp.R;
+import com.autosenseapp.databases.ArduinoPin;
 import com.autosenseapp.devices.outputTriggers.Trigger;
 import java.util.List;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 /**
  * Created by eric on 2014-09-02.
@@ -20,14 +23,16 @@ public class TriggerAdapter extends ArrayAdapter<Trigger> {
 
 	private Context context;
 	private LayoutInflater inflater;
+	private ArduinoPin arduinoPin;
 	private List<Trigger> allTriggers;
 	private List<Trigger> selectedTriggers;
 
-	public TriggerAdapter(Context context, List<Trigger> allTriggers, List<Trigger> selectedTriggers) {
+	public TriggerAdapter(Context context, List<Trigger> allTriggers, List<Trigger> selectedTriggers, ArduinoPin arduinoPin) {
 		super(context, android.R.layout.simple_list_item_1, allTriggers);
 		this.context = context;
 		this.allTriggers = allTriggers;
 		this.selectedTriggers = selectedTriggers;
+		this.arduinoPin = arduinoPin;
 
 		inflater = LayoutInflater.from(context);
 	}
@@ -42,46 +47,47 @@ public class TriggerAdapter extends ArrayAdapter<Trigger> {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder viewHolder;
-		Trigger trigger = this.getItem(position);
-		if (convertView == null) {
-			convertView = inflater.inflate(R.layout.pin_trigger_row, parent, false);
-
-			viewHolder = new ViewHolder();
-			viewHolder.textView = (TextView) convertView.findViewById(R.id.TextView);
-			viewHolder.checkBox = (CheckBox) convertView.findViewById(R.id.CheckBox);
-
-			convertView.setTag(R.string.view_holder ,viewHolder);
+	public View getView(int position, View view, ViewGroup parent) {
+		ViewHolder holder;
+		if (view != null) {
+			holder = (ViewHolder) view.getTag(R.string.view_holder);
 		} else {
-			viewHolder = (ViewHolder) convertView.getTag(R.string.view_holder);
+			view = inflater.inflate(R.layout.pin_trigger_row, parent, false);
+			holder = new ViewHolder(view);
+			view.setTag(R.string.view_holder, holder);
 		}
-		try {
-			viewHolder.textView.setText(getItem(position).getName(context));
-		} catch (Exception e) {}
-		try {
-			viewHolder.checkBox.setOnClickListener((View.OnClickListener) context);
-		} catch (Exception e) {}
+		Trigger currentTrigger = getItem(position);
 
-		viewHolder.checkBox.setTag(R.string.trigger, getItem(position));
+		try {
+			holder.textView.setText(currentTrigger.getName(context));
+		} catch (Exception e) {}
+		try {
+			holder.checkBox.setOnClickListener((View.OnClickListener) context);
+		} catch (Exception e) {}
 
 		for (Trigger t : selectedTriggers) {
-			// default checkbox to false
-			viewHolder.checkBox.setChecked(false);
-			if (trigger.getId() == t.getId()) {
-				convertView.setTag(R.string.trigger, t);
+			holder.checkBox.setChecked(false);
+			if (currentTrigger.getId() == t.getId()) {
 				// if we've found a matching id, check it
-				viewHolder.checkBox.setChecked(true);
+				holder.checkBox.setChecked(true);
+				currentTrigger.setAction(t.getAction());
 				// and break the loop
 				break;
 			}
 		}
-
-		return convertView;
+		currentTrigger.setArduinoPin(arduinoPin);
+		holder.checkBox.setTag(R.string.triggers, currentTrigger);
+		view.setTag(R.string.triggers, currentTrigger);
+		view.setTag(R.string.checkbox, holder.checkBox);
+		return view;
 	}
 
-	private static class ViewHolder {
-		public TextView textView;
-		public CheckBox checkBox;
+	static class ViewHolder {
+		@InjectView(R.id.TextView) TextView textView;
+		@InjectView(R.id.CheckBox) CheckBox checkBox;
+
+		public ViewHolder(View view) {
+			ButterKnife.inject(this, view);
+		}
 	}
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TextView;
 import com.autosenseapp.AutosenseApplication;
 import com.autosenseapp.R;
 import com.autosenseapp.databases.ArduinoPin;
@@ -24,6 +25,7 @@ public class ActionToggleExtraDialog extends Dialog {
 	@InjectView(R.id.high_color_view) AmbilWarnaPrefWidgetView highWidgetView;
 	@InjectView(R.id.low_color_view) AmbilWarnaPrefWidgetView lowWidgetView;
 	@Inject SharedPreferences sharedPreferences;
+	@Inject Context context;
 	private ArduinoPin arduinoPin;
 	private int highColor;
 	private int lowColor;
@@ -44,6 +46,7 @@ public class ActionToggleExtraDialog extends Dialog {
 
 		highWidgetView.setBackgroundColor(highColor);
 		lowWidgetView.setBackgroundColor(lowColor);
+		setTitle(context.getString(R.string.pin_toggle_colors) + " " + arduinoPin.getPinNumber());
 	}
 
 	@OnClick(R.id.high_row)
@@ -59,6 +62,7 @@ public class ActionToggleExtraDialog extends Dialog {
 				highWidgetView.setBackgroundColor(color);
 			}
 		});
+		dialog.getDialog().setTitle("High Color");
 		dialog.show();
 	}
 
@@ -75,6 +79,7 @@ public class ActionToggleExtraDialog extends Dialog {
 				lowWidgetView.setBackgroundColor(color);
 			}
 		});
+		dialog.getDialog().setTitle("Low Color");
 		dialog.show();
 	}
 }

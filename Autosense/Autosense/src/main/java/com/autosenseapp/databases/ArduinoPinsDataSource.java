@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 import com.autosenseapp.controllers.ArduinoController;
 import com.autosenseapp.devices.Master;
@@ -115,7 +116,7 @@ public class ArduinoPinsDataSource {
 		}
 
 		cursor.close();
-		return pins;
+		return Collections.unmodifiableList(pins);
 	}
 
 	public List<ArduinoPin> getPins(int pinType) {
@@ -138,7 +139,7 @@ public class ArduinoPinsDataSource {
 			cursor.moveToNext();
 		}
 		cursor.close();
-		return arduinoPins;
+		return Collections.unmodifiableList(arduinoPins);
 	}
 
 	public ArduinoPin getPinTriggerById(int id) {
@@ -256,11 +257,12 @@ public class ArduinoPinsDataSource {
 
 				Trigger trigger = cursorToTrigger(cursor);
 				trigger.setAction(action);
+				trigger.setArduinoPin(pin);
 				triggers.add(trigger);
 			}
 			cursor.moveToNext();
 		}
-		return triggers;
+		return Collections.unmodifiableList(triggers);
 	}
 
 	public void removePinTrigger(ArduinoPin arduinoPin, Trigger trigger) {
@@ -343,7 +345,9 @@ public class ArduinoPinsDataSource {
 			Class<?> clazz = Class.forName(context.getPackageName() + ".devices." + directory + "." + clazzName);
 			Constructor<?> constructor = clazz.getConstructor();
 			return constructor.newInstance();
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			Log.e(TAG, e.toString());
+		}
 		return null;
 	}
 }

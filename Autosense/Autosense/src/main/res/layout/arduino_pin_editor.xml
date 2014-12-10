@@ -90,9 +90,10 @@
 					android:orientation="vertical"
 					android:padding="5dp">
 					<TextView android:id="@+id/pin_settings_title"
-							  style="@style/SmallText" />
+						style="@style/SmallText"
+                        android:text="@string/triggers"/>
 
-					<ListView android:id="@+id/pin_output_trigger"
+					<ListView android:id="@+id/pin_triggers_list"
 							  android:layout_width="match_parent"
 							  android:layout_height="wrap_content" />
 

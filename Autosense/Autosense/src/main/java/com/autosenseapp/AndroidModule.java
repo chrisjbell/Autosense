@@ -11,13 +11,15 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import com.autosenseapp.activities.Dashboard;
 import com.autosenseapp.activities.settings.ArduinoPinEditor;
+import com.autosenseapp.activities.settings.ArduinoPinEditorModes.HighImpedance;
+import com.autosenseapp.activities.settings.ArduinoPinEditorModes.Input;
+import com.autosenseapp.activities.settings.ArduinoPinEditorModes.Output;
 import com.autosenseapp.activities.settings.ButtonEditor;
 import com.autosenseapp.adapters.MediaAdapter;
 import com.autosenseapp.adapters.SongAdapter;
 import com.autosenseapp.buttons.BaseButton;
 import com.autosenseapp.buttons.appButtons.AppLaunchButton;
 import com.autosenseapp.buttons.appButtons.MusicButton;
-import com.autosenseapp.buttons.settingsButtons.WeatherSettingsButton;
 import com.autosenseapp.buttons.widgetButtons.ArduinoButton;
 import com.autosenseapp.controllers.BackgroundController;
 import com.autosenseapp.controllers.MediaController;
@@ -84,6 +86,8 @@ import dagger.Provides;
 				GaugesSettingsFragment.class,
 				HeaderFragment.class,
 				LauncherFragment.class,
+				HighImpedance.class,
+				Input.class,
 				MasterIoFragment.class,
 				MediaSettingsFragment.class,
 				MusicButton.class,
@@ -93,6 +97,7 @@ import dagger.Provides;
 				MusicNotificationFragment.class,
 				NavigationSettingsFragment.class,
 				NowPlayingState.class,
+				Output.class,
 				PausedState.class,
 				PlayState.class,
 				PlaylistState.class,

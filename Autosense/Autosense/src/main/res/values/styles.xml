@@ -1,8 +1,8 @@
 <resources>
-	<style name="Theme.Lydia" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+	<style name="Theme.Autosense" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
 		<item name="android:windowBackground">@drawable/bg_selector</item>
 		<item name="android:textColor">@color/white</item>
-	</style>
+    </style>
 
 	<style name="ControlTextSize">
 		<item name="android:textSize">18dp</item>

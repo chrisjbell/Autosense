@@ -54,6 +54,7 @@
 	<string name="call">Call</string>
 	<string name="clear">Clear</string>
 	<string name="check_for_update">Check for update</string>
+    <string name="checkbox">Checkbox</string>
 	<string name="choose_colors">Choose colors</string>
 	<string name="choose_image">Choose image</string>
 	<string name="chrome">Chrome</string>
@@ -134,6 +135,7 @@
 	<string name="phone">Phone</string>
 	<string name="pin">Pin</string>
 	<string name="pin_comment">Comment for this pin</string>
+    <string name="pin_toggle_colors">Toggle colors for pin</string>
 	<string name="play">Play</string>
 	<string name="playlist">Playlist</string>
 	<string name="playlists">Playlists</string>
@@ -208,7 +210,7 @@
 	<string name="toggle_traffic">Toggle Traffic</string>
 	<string name="tuesday">Tuesday</string>
 	<string name="tuesday_abbr">Tue</string>
-	<string name="trigger">Trigger</string>
+	<string name="triggers">Triggers</string>
 	<string name="type_phone">Phone Numbers</string>
 	<string name="type_email">E-Mail</string>
 	<string name="unpairing_device">Unpairing device</string>

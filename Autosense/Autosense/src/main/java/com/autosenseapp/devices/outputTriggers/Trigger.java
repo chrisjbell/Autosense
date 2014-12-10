@@ -3,12 +3,13 @@ package com.autosenseapp.devices.outputTriggers;
 import android.content.Context;
 import android.os.Parcelable;
 import com.autosenseapp.AutosenseApplication;
+import com.autosenseapp.databases.ArduinoPin;
 import com.autosenseapp.devices.actions.Action;
 
 /**
  * Created by eric on 2014-09-05.
  */
-public abstract class Trigger implements Parcelable{
+public abstract class Trigger implements Parcelable {
 
 	private static final String TAG = Trigger.class.getSimpleName();
 
@@ -17,6 +18,7 @@ public abstract class Trigger implements Parcelable{
 	protected Action action;
 	protected String className;
 	protected String name;
+	protected ArduinoPin arduinoPin;
 
 	public Trigger(Context context) {
 		this.context = context;
@@ -56,6 +58,14 @@ public abstract class Trigger implements Parcelable{
 
 	public String getClassName() {
 		return className;
+	}
+
+	public void setArduinoPin(ArduinoPin arduinoPin) {
+		this.arduinoPin = arduinoPin;
+	}
+
+	public ArduinoPin getArduinoPin() {
+		return arduinoPin;
 	}
 
 	@Override

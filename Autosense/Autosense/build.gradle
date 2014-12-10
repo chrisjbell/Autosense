@@ -8,10 +8,10 @@ android {
 	compileSdkVersion 19
 	buildToolsVersion '20.0.0'
 	defaultConfig {
-		applicationId 'com.autosenseapp'
 		minSdkVersion 17
 		targetSdkVersion 19
 		versionCode = versionNumber
+		applicationId 'com.autosenseapp'
 	}
 	buildTypes {
 		debug {
@@ -38,9 +38,11 @@ android {
 	}
 	productFlavors {
 		free {
+//			applicationId 'com.autosenseapp.free'
 			buildConfigField "boolean", "SHOW_ADS", "true"
 		}
 		paid {
+//			applicationId 'com.autosenseapp.paid'
 			buildConfigField "boolean", "SHOW_ADS", "false"
 		}
 	}
@@ -61,7 +63,7 @@ dependencies {
 	compile project(':ambilWarna')
 	compile project(':usbSerialForAndroid')
 	compile project(':timePickerWithSeconds')
-	compile 'com.android.support:support-v4:21.0.0'
+	compile 'com.android.support:support-v4:21.0.2'
 	compile 'com.google.android.gms:play-services:6.1.71'
 	compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
 	compile files('libs/lastfm-java-0.1.2.jar')
@@ -69,7 +71,7 @@ dependencies {
 	compile 'com.jakewharton:butterknife:5.1.2'
 	compile 'com.squareup.dagger:dagger:1.2.2'
 	provided 'com.squareup.dagger:dagger-compiler:1.2.2'
-	compile 'com.splunk.mint:mint:4.0.6'
+	compile 'com.splunk.mint:mint:4.0.7'
 }
 
 def outputFile = file("src/main/assets/apk_version.txt")

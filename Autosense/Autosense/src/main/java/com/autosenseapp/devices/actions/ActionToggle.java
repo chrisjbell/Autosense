@@ -12,9 +12,12 @@ import android.os.Parcel;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.autosenseapp.activities.settings.ArduinoPinEditorModes.PinMode;
 import com.autosenseapp.databases.ArduinoPin;
 import com.autosenseapp.devices.Arduino;
 import com.autosenseapp.devices.Master;
+import com.autosenseapp.devices.outputTriggers.Trigger;
 import com.autosenseapp.dialogs.ActionToggleExtraDialog;
 
 /**
@@ -37,8 +40,8 @@ public class ActionToggle extends Action {
 	}
 
 	@Override
-	public Dialog getExtraDialog(Context context, ArduinoPin arduinoPin) {
-		return new ActionToggleExtraDialog(context, arduinoPin);
+	public Dialog getExtraDialog(Context context, Trigger trigger, PinMode pinMode) {
+		return new ActionToggleExtraDialog(context, trigger, pinMode);
 	}
 
 	@Override

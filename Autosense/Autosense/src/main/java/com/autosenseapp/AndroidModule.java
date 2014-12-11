@@ -28,6 +28,7 @@ import com.autosenseapp.devices.configs.ArduinoDue;
 import com.autosenseapp.devices.configs.ArduinoUno;
 import com.autosenseapp.devices.usbInterfaces.ArduinoAccessory;
 import com.autosenseapp.devices.usbInterfaces.ArduinoDevice;
+import com.autosenseapp.dialogs.ActionTimerExtraDialog;
 import com.autosenseapp.dialogs.ActionToggleExtraDialog;
 import com.autosenseapp.fragments.HeaderFragment;
 import com.autosenseapp.fragments.LauncherFragment;
@@ -62,6 +63,7 @@ import dagger.Provides;
  */
 @Module(
 		injects = {
+				ActionTimerExtraDialog.class,
 				ActionToggle.class,
 				ActionToggleExtraDialog.class,
 				AlarmSettingsFragment.class,

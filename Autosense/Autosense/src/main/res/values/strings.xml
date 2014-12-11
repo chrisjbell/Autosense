@@ -135,6 +135,7 @@
 	<string name="phone">Phone</string>
 	<string name="pin">Pin</string>
 	<string name="pin_comment">Comment for this pin</string>
+    <string name="pin_timer">Set timer for pin</string>
     <string name="pin_toggle_colors">Toggle colors for pin</string>
 	<string name="play">Play</string>
 	<string name="playlist">Playlist</string>
@@ -166,6 +167,7 @@
 	<string name="select_device">select a device to connect</string>
     <string name="set_listview_bg">List background</string>
     <string name="set_listview_bg_summary">Set list background to be darker.  Good for light backgrounds.</string>
+	<string name="set_pin">Set pin</string>
 	<string name="settings">Settings</string>
 	<string name="setup_alarm">Setup alarm</string>
 	<string name="setup_master_io">Setup Master IO</string>
@@ -239,7 +241,7 @@
 	<string name="title_activity_display_message">New Message</string>
 
 	<string name="update_apk_url">https://github.com/ericfri/lydia/raw/master/Autosense/Autosense/Autosense-paid-gitHub.apk</string>
-	<string name="update_url">https://raw.githubusercontent.com/ericfri/lydia/master/Autosense/Autosense/src/main/assets/apk_version.txt</string>
+	<string name="update_url">https://raw.githubusercontent.com/ericfri/Autosense/master/Autosense/Autosense/src/main/assets/apk_version.txt</string>
 
 
 </resources>

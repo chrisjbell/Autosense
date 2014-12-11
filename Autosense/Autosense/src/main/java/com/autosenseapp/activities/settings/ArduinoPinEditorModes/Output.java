@@ -1,6 +1,7 @@
 package com.autosenseapp.activities.settings.ArduinoPinEditorModes;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
@@ -8,11 +9,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.autosenseapp.R;
 import com.autosenseapp.adapters.TriggerAdapter;
+import com.autosenseapp.callbacks.ActionTimerCallback;
 import com.autosenseapp.controllers.PinTriggerController;
 import com.autosenseapp.databases.ArduinoPin;
 import com.autosenseapp.devices.actions.Action;
 import com.autosenseapp.devices.outputTriggers.Trigger;
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.util.List;
+import java.util.Set;
 import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -21,7 +26,9 @@ import butterknife.OnClick;
 /**
  * Created by eric on 2014-11-26.
  */
-public class Output extends HighImpedance implements RadioGroup.OnCheckedChangeListener {
+public class Output extends HighImpedance implements
+		RadioGroup.OnCheckedChangeListener,
+		ActionTimerCallback {
 
 	private static final String TAG = Output.class.getSimpleName();
 
@@ -34,6 +41,9 @@ public class Output extends HighImpedance implements RadioGroup.OnCheckedChangeL
 
 	private List<Action> availableActions;
 	private List<Trigger> availableTriggers;
+
+	private Action action;
+	private Trigger trigger;
 
 	public Output(Context context) {
 		super(context);
@@ -63,6 +73,7 @@ public class Output extends HighImpedance implements RadioGroup.OnCheckedChangeL
 	@Override
 	public void updateActions(Trigger trigger, boolean checked) {
 		updateActionTitle(trigger);
+		this.trigger = trigger;
 		actionRadioButtons.removeAllViews();
 
 		for (Action action : availableActions) {
@@ -80,6 +91,7 @@ public class Output extends HighImpedance implements RadioGroup.OnCheckedChangeL
 				if (trigger.getAction().getId() == action.getId()) {
 					radioButton.setChecked(true);
 					showHideSettingsButton(action);
+					this.action = action;
 				}
 			} catch (NullPointerException e) {}
 			actionRadioButtons.addView(radioButton);
@@ -100,6 +112,8 @@ public class Output extends HighImpedance implements RadioGroup.OnCheckedChangeL
 		try {
 			Action action = (Action) selectedRadioButton.getTag(R.string.action);
 			Trigger trigger = (Trigger) selectedRadioButton.getTag(R.string.triggers);
+			this.action = action;
+			this.trigger = trigger;
 			// get the stored action from the radio button
 			showHideSettingsButton(action);
 			if (selectedRadioButton.isChecked()) {
@@ -120,6 +134,24 @@ public class Output extends HighImpedance implements RadioGroup.OnCheckedChangeL
 	public void settingsButtonClick() {
 		View radioButton = actionRadioButtons.findViewById(actionRadioButtons.getCheckedRadioButtonId());
 		Trigger trigger = (Trigger) radioButton.getTag(R.string.triggers);
-		((Action)radioButton.getTag(R.string.action)).getExtraDialog(context, trigger.getArduinoPin()).show();
+		((Action)radioButton.getTag(R.string.action)).getExtraDialog(context, trigger, this).show();
+	}
+
+	@Override
+	public void actionPositive(Bundle info) {
+		JSONObject jsonObject = new JSONObject();
+		Set<String> keys = info.keySet();
+		for (String key : keys) {
+			try {
+				jsonObject.put(key ,info.get(key));
+			} catch (JSONException e) {}
+		}
+		this.trigger.setExtraData(jsonObject.toString());
+		pinTriggerController.editPinTrigger(trigger.getArduinoPin(), trigger, action);
+	}
+
+	@Override
+	public void actionNegative() {
+		Log.d(TAG, "negative");
 	}
 }

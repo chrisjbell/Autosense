@@ -7,9 +7,9 @@ import com.autosenseapp.devices.outputTriggers.Trigger;
 /**
  * Created by eric on 2014-11-26.
  */
-public interface PinMode {
+public abstract class PinMode {
 
-	public void updateTriggerList(ArduinoPin pin);
-	public void updateActions(Trigger trigger, boolean checked);
-	public void onCheckedChanged(RadioGroup group, int checkedId);
+	public abstract void updateTriggerList(ArduinoPin pin);
+	public abstract void updateActions(Trigger trigger, boolean checked);
+	public abstract void onCheckedChanged(RadioGroup group, int checkedId);
 }

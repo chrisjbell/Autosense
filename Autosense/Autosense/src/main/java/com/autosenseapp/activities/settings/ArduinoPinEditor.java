@@ -22,8 +22,6 @@ import com.autosenseapp.controllers.PinTriggerController;
 import com.autosenseapp.databases.ArduinoPin;
 import com.autosenseapp.devices.Arduino;
 import com.autosenseapp.devices.outputTriggers.Trigger;
-import com.ikovac.timepickerwithseconds.view.MyTimePickerDialog;
-import com.ikovac.timepickerwithseconds.view.TimePicker;
 import java.util.ArrayList;
 import javax.inject.Inject;
 import butterknife.ButterKnife;
@@ -36,8 +34,7 @@ import butterknife.OnTextChanged;
  * Created by eric on 2014-08-30.
  */
 public class ArduinoPinEditor extends BaseActivity implements
-		View.OnClickListener,
-		MyTimePickerDialog.OnTimeSetListener {
+		View.OnClickListener {
 
 	private static final String TAG = ArduinoPinEditor.class.getSimpleName();
 
@@ -125,10 +122,6 @@ public class ArduinoPinEditor extends BaseActivity implements
 	public void onClick(View v) {
 		Trigger trigger = (Trigger) v.getTag(R.string.triggers);
 		pinMode.updateActions(trigger, ((CheckBox)v).isChecked());
-	}
-
-	@Override
-	public void onTimeSet(TimePicker view, int hours, int minutes, int seconds) {
 	}
 
 }

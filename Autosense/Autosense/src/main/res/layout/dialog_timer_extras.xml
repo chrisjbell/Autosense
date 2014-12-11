@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:orientation="vertical"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:layout_margin="0dp"
+			  android:paddingLeft="0dp" android:paddingTop="10dp" android:paddingRight="0dp" android:paddingBottom="0dp">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:gravity="end"
+		android:layout_marginRight="10dp"
+		android:layout_marginLeft="10dp">
+		<TextView style="@style/SmallText"
+				android:text="@string/set_pin"/>
+		<TextView android:id="@+id/pin_number"
+				style="@style/SmallText"
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:paddingLeft="4dip" />
+		<RadioGroup android:id="@+id/pin_status"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<RadioButton android:id="@+id/timer_high"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/high" />
+			<RadioButton android:id="@+id/timer_low"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/low"/>
+		</RadioGroup>
+	</LinearLayout>
+	<View style="@style/HR2" />
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_marginRight="10dp"
+		android:layout_marginLeft="10dp">
+	<TextView
+			style="@style/SmallText"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:text="for"/>
+		<EditText android:id="@+id/timer_duration"
+			style="@style/SmallText"
+			android:textIsSelectable="false"
+			android:hint="@string/time"/>
+	</LinearLayout>
+	<View style="@style/HR2" />
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_marginRight="10dp"
+		android:layout_marginLeft="10dp">
+	<TextView
+			style="@style/SmallText"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:text="then go"/>
+		<RadioGroup android:id="@+id/pin_status_after"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+			<RadioButton android:id="@+id/timer_high_after"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/high"/>
+			<RadioButton android:id="@+id/timer_low_after"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/low"/>
+		</RadioGroup>
+	</LinearLayout>
+	<View
+		android:layout_width="fill_parent"
+		android:layout_height="1dip"
+		android:background="?android:attr/dividerHorizontal" android:layout_above="@+id/linearLayout"
+		android:layout_alignParentStart="true" android:layout_alignParentLeft="true"/>
+	<LinearLayout
+		style="?android:attr/buttonBarStyle"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:paddingTop="0dip"
+		android:paddingLeft="2dip"
+		android:paddingRight="2dip"
+		android:measureWithLargestChild="true" android:layout_alignParentBottom="true"
+		android:id="@+id/linearLayout">
+
+		<Button
+			android:id="@+id/button_edit_cancel"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@android:string/cancel"/>
+		<Button
+			android:id="@+id/button_edit_ok"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@android:string/ok"/>
+	</LinearLayout>
+
+</LinearLayout>

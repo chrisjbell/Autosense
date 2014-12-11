@@ -19,6 +19,7 @@ public abstract class Trigger implements Parcelable {
 	protected String className;
 	protected String name;
 	protected ArduinoPin arduinoPin;
+	protected String extraData;
 
 	public Trigger(Context context) {
 		this.context = context;
@@ -66,6 +67,14 @@ public abstract class Trigger implements Parcelable {
 
 	public ArduinoPin getArduinoPin() {
 		return arduinoPin;
+	}
+
+	public void setExtraData(String extraData) {
+		this.extraData = extraData;
+	}
+
+	public String getExtraData() {
+		return extraData;
 	}
 
 	@Override

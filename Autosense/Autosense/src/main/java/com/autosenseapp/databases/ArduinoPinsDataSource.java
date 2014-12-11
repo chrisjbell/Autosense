@@ -65,7 +65,7 @@ public class ArduinoPinsDataSource {
 		values.put(ArduinoPinsOpenHelper.PIN_ID, arduinoPin.getId());
 		values.put(ArduinoPinsOpenHelper.ACTION_ID, action.getId());
 		values.put(ArduinoPinsOpenHelper.TRIGGER_ID, trigger.getId());
-		values.put(ArduinoPinsOpenHelper.EXTRA_DATA, action.getExtraData());
+		values.put(ArduinoPinsOpenHelper.EXTRA_DATA, trigger.getExtraData());
 
 		// try an update first
 		int numrows = database.update(ArduinoPinsOpenHelper.PIN_TRIGGERS_TABLE, values,
@@ -208,7 +208,7 @@ public class ArduinoPinsDataSource {
 				new String[]{
 					ArduinoPinsOpenHelper.TRIGGERS_TABLE + "." + ArduinoPinsOpenHelper.COLUMN_ID + " as " + ArduinoPinsOpenHelper.TRIGGER_ID,
 					ArduinoPinsOpenHelper.TRIGGERS_TABLE + "." + ArduinoPinsOpenHelper.CLASS + " as " + ArduinoPinsOpenHelper.TRIGGER_CLASS,
-					ArduinoPinsOpenHelper.TRIGGERS_TABLE + "." + ArduinoPinsOpenHelper.NAME + " as " + ArduinoPinsOpenHelper.TRIGGER_NAME
+					ArduinoPinsOpenHelper.TRIGGERS_TABLE + "." + ArduinoPinsOpenHelper.NAME + " as " + ArduinoPinsOpenHelper.TRIGGER_NAME,
 				}, // all columns
 				null, // selection
 				null, // selectionArgs
@@ -233,7 +233,7 @@ public class ArduinoPinsDataSource {
 				ArduinoPinsOpenHelper.ACTIONS_TABLE + "." + ArduinoPinsOpenHelper.COLUMN_ID + " as " + ArduinoPinsOpenHelper.ACTION_ID + ", " +
 				ArduinoPinsOpenHelper.ACTIONS_TABLE + "." + ArduinoPinsOpenHelper.CLASS + " as " + ArduinoPinsOpenHelper.ACTION_CLASS + ", " +
 				ArduinoPinsOpenHelper.ACTIONS_TABLE + "." + ArduinoPinsOpenHelper.NAME + " as " + ArduinoPinsOpenHelper.ACTION_NAME + ", " +
-				ArduinoPinsOpenHelper.PIN_TRIGGERS_TABLE + "." + ArduinoPinsOpenHelper.EXTRA_DATA + " as " + ArduinoPinsOpenHelper.ACTION_EXTRA_DATA + ", " +
+				ArduinoPinsOpenHelper.PIN_TRIGGERS_TABLE + "." + ArduinoPinsOpenHelper.EXTRA_DATA + " as " + ArduinoPinsOpenHelper.EXTRA_DATA + ", " +
 				ArduinoPinsOpenHelper.TRIGGERS_TABLE + "." + ArduinoPinsOpenHelper.COLUMN_ID + " as " + ArduinoPinsOpenHelper.TRIGGER_ID + ", " +
 				ArduinoPinsOpenHelper.TRIGGERS_TABLE + "." + ArduinoPinsOpenHelper.CLASS + " as " + ArduinoPinsOpenHelper.TRIGGER_CLASS + ", " +
 				ArduinoPinsOpenHelper.TRIGGERS_TABLE + "." + ArduinoPinsOpenHelper.NAME + " as " + ArduinoPinsOpenHelper.TRIGGER_NAME +
@@ -252,12 +252,12 @@ public class ArduinoPinsDataSource {
 			if (actionClass != null) {
 				Action action = (Action) createClass(ArduinoPinsOpenHelper.ACTIONS_TABLE, actionClass);
 				action.setId(cursor.getInt(cursor.getColumnIndex(ArduinoPinsOpenHelper.ACTION_ID)));
-				action.setExtraData(cursor.getString(cursor.getColumnIndex(ArduinoPinsOpenHelper.ACTION_EXTRA_DATA)));
 				action.setName(cursor.getString(cursor.getColumnIndex(ArduinoPinsOpenHelper.ACTION_NAME)));
 
 				Trigger trigger = cursorToTrigger(cursor);
 				trigger.setAction(action);
 				trigger.setArduinoPin(pin);
+				trigger.setExtraData(cursor.getString(cursor.getColumnIndex(ArduinoPinsOpenHelper.EXTRA_DATA)));
 				triggers.add(trigger);
 			}
 			cursor.moveToNext();

@@ -18,7 +18,7 @@ import butterknife.InjectView;
 /**
  * Created by eric on 2014-11-26.
  */
-public class HighImpedance implements PinMode {
+public class HighImpedance extends PinMode {
 
 	private Context context;
 	@InjectView(R.id.pin_triggers_list) ListView pinTriggers;

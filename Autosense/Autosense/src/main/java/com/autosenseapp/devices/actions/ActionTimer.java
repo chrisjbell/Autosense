@@ -4,9 +4,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Parcel;
 import android.view.View;
+
+import com.autosenseapp.activities.settings.ArduinoPinEditorModes.PinMode;
 import com.autosenseapp.databases.ArduinoPin;
-import com.ikovac.timepickerwithseconds.view.MyTimePickerDialog;
-import com.ikovac.timepickerwithseconds.view.TimePicker;
+import com.autosenseapp.devices.outputTriggers.Trigger;
+import com.autosenseapp.dialogs.ActionTimerExtraDialog;
 
 /**
  * Created by eric on 2014-09-04.
@@ -26,15 +28,8 @@ public class ActionTimer extends Action {
 	}
 
 	@Override
-	public Dialog getExtraDialog(final Context context, ArduinoPin arduinoPin) {
-		return new MyTimePickerDialog(context, new MyTimePickerDialog.OnTimeSetListener() {
-			@Override
-			public void onTimeSet(TimePicker view, int hourOfDay, int minute, int seconds) {
-				if (context instanceof MyTimePickerDialog.OnTimeSetListener) {
-					((MyTimePickerDialog.OnTimeSetListener) context).onTimeSet(view, hourOfDay, minute, seconds);
-				}
-			}
-		}, 0, 0, 0);
+	public Dialog getExtraDialog(final Context context, Trigger trigger, PinMode pinMode) {
+		return new ActionTimerExtraDialog(context, trigger, pinMode);
 	}
 
 	@Override

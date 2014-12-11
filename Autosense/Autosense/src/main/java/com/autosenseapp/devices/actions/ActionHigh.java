@@ -4,8 +4,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Parcel;
 import android.view.View;
+import com.autosenseapp.activities.settings.ArduinoPinEditorModes.PinMode;
 import com.autosenseapp.databases.ArduinoPin;
 import com.autosenseapp.devices.Master;
+import com.autosenseapp.devices.outputTriggers.Trigger;
 
 /**
  * Created by eric on 2014-09-04.
@@ -22,7 +24,7 @@ public class ActionHigh extends Action {
 	}
 
 	@Override
-	public Dialog getExtraDialog(Context context, ArduinoPin arduinoPin) {
+	public Dialog getExtraDialog(Context context, Trigger trigger, PinMode pinMode) {
 		return null;
 	}
 

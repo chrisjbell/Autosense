@@ -4,10 +4,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Parcelable;
 import android.view.View;
-import android.widget.LinearLayout;
-
+import com.autosenseapp.activities.settings.ArduinoPinEditorModes.PinMode;
 import com.autosenseapp.databases.ArduinoPin;
 import com.autosenseapp.devices.Master;
+import com.autosenseapp.devices.outputTriggers.Trigger;
 
 /**
  * Created by eric on 2014-09-04.
@@ -33,7 +33,7 @@ public abstract class Action implements Parcelable {
 		return context.getResources().getString((context.getResources().getIdentifier(name, "string", context.getPackageName())));
 	}
 	public abstract boolean hasExtra();
-	public abstract Dialog getExtraDialog(Context context, ArduinoPin arduinoPin);
+	public abstract Dialog getExtraDialog(Context context, Trigger trigger, PinMode pinMode);
 	public abstract void setExtraData(String string);
 	public abstract String getExtraData();
 	public abstract String getExtraString();

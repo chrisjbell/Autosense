@@ -15,6 +15,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.widget.RelativeLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,6 +25,8 @@ import com.autosenseapp.R;
 import com.autosenseapp.includes.Helpers;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import ca.efriesen.lydia_common.media.Song;
 
 /**
@@ -31,16 +34,17 @@ import ca.efriesen.lydia_common.media.Song;
  */
 @Singleton
 public class BackgroundController {
+	private static final String TAG = BackgroundController.class.getSimpleName();
 
 	public static final String USE_BG_IMAGE = "use_bg_image";
 	public static final String BG_BRIGHTNESS = "bg_brightness";
 	public static final String BG_IMG_PATH = "bg_img_path";
 
-	private RelativeLayout layout;
-	private RelativeLayout colorMask;
-
 	private LocalBroadcastManager localBroadcastManager;
 	@Inject SharedPreferences sharedPreferences;
+
+	@InjectView(R.id.dashboard_container) RelativeLayout layout;
+	@InjectView(R.id.color_mask) RelativeLayout colorMask;
 
 	@Inject
 	public BackgroundController(LocalBroadcastManager localBroadcastManager) {
@@ -53,7 +57,7 @@ public class BackgroundController {
 	}
 
 	public void applyBackground(Activity activity) {
-		setLayouts(activity);
+		ButterKnife.inject(this, activity);
 		// set background image if we have one set
 		boolean useBgImg = sharedPreferences.getBoolean(USE_BG_IMAGE, false);
 		// if we have opted to use a background image, set it
@@ -64,12 +68,10 @@ public class BackgroundController {
 		} else if (sharedPreferences.getInt("topBgColor", 0) != 0 || sharedPreferences.getInt("bottomBgColor", 0) != 0) {
 			GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{sharedPreferences.getInt("topBgColor", 1), sharedPreferences.getInt("bottomBgColor", 1)});
 			gradientDrawable.setCornerRadius(0f);
-			RelativeLayout layout = (RelativeLayout) activity.findViewById(R.id.dashboard_container);
 			layout.setBackground(gradientDrawable);
 		}
 		// set overall brightness
 		float brightness = sharedPreferences.getFloat(BG_BRIGHTNESS, 1.0f);
-		RelativeLayout colorMask = (RelativeLayout) activity.findViewById(R.id.color_mask);
 		colorMask.setBackgroundColor(Color.argb(Helpers.map(brightness, 0, 1, 255, 0), 0x00, 0x00, 0x00));
 	}
 
@@ -156,15 +158,6 @@ public class BackgroundController {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	private void setLayouts(Activity activity) {
-		if (layout == null) {
-			layout = (RelativeLayout) activity.findViewById(R.id.dashboard_container);
-		}
-		if (colorMask == null) {
-			colorMask = (RelativeLayout) activity.findViewById(R.id.color_mask);
-		}
 	}
 
 	private class SaveImage extends AsyncTask<Bitmap,Void,Void> {
